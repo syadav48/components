@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
+function JackPot(props) {
+  const[value, setValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    return new Set(value.split('')).size === 1 ? alert('Congrats!! You Won the Jackpot') : alert('Better Luck Next Time');
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          Enter Your JackPot-No:
+          <input type='text' value={value} onChange={(e) => setValue(e.target.value)} />
+          <input type='submit' value='Submit' />
+        </fieldset>
+        
+      </form>
     </div>
-  );
+  )
 }
 
-export default App;
+export default JackPot;
+
